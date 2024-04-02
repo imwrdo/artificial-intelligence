@@ -15,3 +15,7 @@ providing hands-on experience and practical understanding of AI algorithms and m
   - Description: In this lab, we study genetic algorithms inspired by the process of natural selection and genetics. Genetic algorithms are used to solve optimization and search problems. In my case, the genetic algorithm solved the knapsack  problem
   - Folder: Lab2
   - Status: Completed and Published
+3. Minimax and Alphabeta Algorithms
+  - Description: This lab contains my implementation of the classic game Tic-Tac-Toe with artificial intelligence powered by two search algorithms: Minimax and Alpha-Beta Pruning. Developed as part of my university lab project, this program demonstrates the application of these algorithms in creating a challenging opponent for the game.
+  - Folder: Lab3
+  - Status: Completed and Published
