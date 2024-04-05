@@ -1,57 +1,80 @@
+import copy, sys
 from exceptions import AgentException
-import math 
-
+import math
+ 
+def basic_static_eval(connect4, player="o"):
+    if(player == connect4.wins):
+        return float('inf')
+    elif(player != connect4.wins and connect4.wins is not None):
+        return -float('inf')
+    elif((connect4.game_over is True) and (connect4.wins is None)):
+        return 0
+    else:
+        countMy = 0
+        countNotMy = 0
+        for four in connect4.iter_fours():
+            if player == 'o':
+                target = 'x'
+            else:
+                target = 'o'
+            if four.count(player)==3:
+                countMy+=1
+            if four.count(target)==3:
+                countNotMy+=1
+                
+        return countMy - countNotMy 
+ 
+def advanced_static_eval(connect4, player="o"):
+    # TODO
+    return 0  # return score for player
+ 
+ 
 class AlphaBetaAgent:
-    def __init__(self, token):
-        self.my_token = token
-
-    def situation(self,connect4):
-        fieldRestriction = [(0, 0), (0, connect4.width - 1), (connect4.height - 1, 0), (connect4.height - 1, connect4.width - 1)]
-        count = sum(1 for row, col in fieldRestriction if connect4.board[row][col] == self.my_token)
-        return 0.2 * count
-    
-    def alphabeta(self,connect4,player,depth,alpha,beta):
-        if(self.my_token == connect4.wins):
-            return 1
-        if(self.my_token != connect4.wins and connect4.wins is not None):
-            return -1
-        if((connect4.game_over is True) and (connect4.wins is None)):
-            return 0
-        if(depth==0):
-            return self.situation(connect4)
-        alphaBuffer = alpha
-        betaBuffer = beta
-        best_move = -math.inf if player == 1 else math.inf
-        for column in connect4.possible_drops():
-            connect4.drop_token(column)
-            score = self.alphabeta(connect4,1-player,depth-1,alphaBuffer,betaBuffer)
-            connect4.undo_last_move()
-            if player == 1:
-                best_move = max(score, best_move)
-                alphaBuffer = max(alphaBuffer,best_move)
-                if best_move >= betaBuffer:
-                    break
-            if player == 0:
-                best_move = min(score, best_move)
-                betaBuffer = min(betaBuffer,best_move)
-                if best_move <= alphaBuffer:
-                    break
-        return best_move
-    
-    def decide(self,connect4):
+    def __init__(self, my_token="o", heuristic_func=basic_static_eval):
+        self.my_token = my_token
+        self.heuristic_func = heuristic_func
+ 
+    def decide(self, connect4):
         if connect4.who_moves != self.my_token:
-            raise AgentException('I can not move')
-        player = 1
-        depth = 4
-        best_move = -math.inf
-        alpha = -math.inf
-        best_state = 0
+            raise AgentException("not my round")
+ 
+        best_move, best_score = self.alphabeta(connect4)
+        return best_move
+ 
+    def alphabeta(self, connect4, depth=4, alpha=-float('inf'), beta=float('inf'), maximizing=True):
+        if depth == 0 or connect4.game_over:
+            return None, self.heuristic_func(connect4, self.my_token)
+
         possible_drops = connect4.possible_drops()
-        for column in possible_drops:
-            connect4.drop_token(column)
-            score = self.alphabeta(connect4,player,depth-1,alpha,math.inf)
-            connect4.undo_last_move()
-            if(score > best_move):
-                best_move=score
-                best_state = possible_drops.index(column)
-        return possible_drops[best_state]
+
+        if not possible_drops:
+            return None, 0 
+
+        best_move = None
+        if maximizing:
+            best_score = -float('inf')
+            for column in possible_drops:
+                new_connect = copy.deepcopy(connect4)
+                new_connect.drop_token(column)
+                _, score = self.alphabeta(new_connect, depth - 1, alpha, beta, not maximizing)
+                if score > best_score:
+                    best_move = column
+                    best_score = score
+                alpha = max(alpha, best_score)
+                if alpha >= beta:
+                    break
+        else:
+            best_score = float('inf')
+            for column in possible_drops:
+                new_connect = copy.deepcopy(connect4)
+                new_connect.drop_token(column)
+                _, score = self.alphabeta(new_connect, depth - 1, alpha, beta, not maximizing)
+                if score < best_score:
+                    best_move = column
+                    best_score = score
+                beta = min(beta, best_score)
+                if alpha >= beta:
+                    break
+
+        return best_move, best_score
+
