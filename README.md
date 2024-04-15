@@ -19,3 +19,7 @@ providing hands-on experience and practical understanding of AI algorithms and m
   - Description: This lab contains my implementation of the classic game Tic-Tac-Toe with artificial intelligence powered by two search algorithms: Minimax and Alpha-Beta Pruning. Developed as part of my university lab project, this program demonstrates the application of these algorithms in creating a challenging opponent for the game.
   - Folder: Lab3
   - Status: Completed and Published
+4. Classification
+  - Description: In our lab, we dive into the world of classification in Machine Learning, where data is categorized into predefined classes. Participants explore a variety of algorithms, from traditional ones like decision trees and support vector machines to cutting-edge deep learning techniques such as convolutional neural networks. Through hands-on experimentation and theoretical understanding, attendees gain insights into model evaluation, performance tuning, and the interpretability of classification results. Join us to unravel the intricacies of pattern recognition and its applications across diverse domains.
+  - Folder: Lab4
+  - Status: In progress
