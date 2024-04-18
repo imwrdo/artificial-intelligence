@@ -22,4 +22,4 @@ providing hands-on experience and practical understanding of AI algorithms and m
 4. Classification
   - Description: In our lab, we dive into the world of classification in Machine Learning, where data is categorized into predefined classes. Participants explore a variety of algorithms, from traditional ones like decision trees and support vector machines to cutting-edge deep learning techniques such as convolutional neural networks. Through hands-on experimentation and theoretical understanding, attendees gain insights into model evaluation, performance tuning, and the interpretability of classification results. Join us to unravel the intricacies of pattern recognition and its applications across diverse domains.
   - Folder: Lab4
-  - Status: In progress
+  - Status: Completed and Published
