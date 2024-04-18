@@ -14,8 +14,26 @@ class Node:
     def gini_best_score(self, y, possible_splits):
         best_gain = -np.inf
         best_idx = 0
+        
+        for index in possible_splits:
+            left_pos = np.sum(y[:index+1] == 1)
+            left_neg = np.sum(y[:index+1] == 0)
+            right_pos = np.sum(y[index+1:] == 1)
+            right_neg = np.sum(y[index+1:] == 0)
 
-        # TODO find position of best data split
+            left_all = left_pos + left_neg
+            right_all = right_pos + right_neg
+            
+            all_sights = left_all+right_all
+            
+            gini_left = 1 - (left_pos/(left_all))**2 - (left_neg/(left_all))**2
+            gini_right = 1 -(right_pos/(right_all))**2 - (right_neg/(right_all))**2
+            
+            gini_gain = 1-((left_all/all_sights)*gini_left)-((right_all/all_sights)*gini_right)
+            
+            if gini_gain > best_gain:
+                best_gain = gini_gain
+                best_idx = index  
 
         return best_idx, best_gain
 
@@ -33,10 +51,16 @@ class Node:
     def find_best_split(self, X, y, feature_subset):
         best_gain = -np.inf
         best_split = None
+        list_of_attrebutes = []
+        
+        if feature_subset is not None:
+            for _ in range(feature_subset):
+                list_of_attrebutes.append(np.random.choice(np.arange(X.shape[1]),None,replace=False))
 
-        # TODO implement feature selection
-
-        for d in range(X.shape[1]):
+        else:
+            list_of_attrebutes = range(X.shape[1])
+            
+        for d in list_of_attrebutes:
             order = np.argsort(X[:, d])
             y_sorted = y[order]
             possible_splits = self.find_possible_splits(X[order, d])
