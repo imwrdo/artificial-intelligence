@@ -23,3 +23,8 @@ providing hands-on experience and practical understanding of AI algorithms and m
   - Description: In our lab, we dive into the world of classification in Machine Learning, where data is categorized into predefined classes. Participants explore a variety of algorithms, from traditional ones like decision trees and support vector machines to cutting-edge deep learning techniques such as convolutional neural networks. Through hands-on experimentation and theoretical understanding, attendees gain insights into model evaluation, performance tuning, and the interpretability of classification results. Join us to unravel the intricacies of pattern recognition and its applications across diverse domains.
   - Folder: Lab4
   - Status: Completed and Published
+5. 
+  - Description: This lab delves into the domain of cluster analysis, a fundamental technique in unsupervised learning aimed at grouping similar data points together. Participants explore various clustering algorithms, such as K-means, hierarchical clustering, and DBSCAN, understanding their strengths, weaknesses, and applications. Through hands-on exercises, attendees gain practical experience in clustering real-world datasets, analyzing clusters' characteristics, and interpreting results. Join us to unravel the mysteries of unsupervised learning and discover how clustering algorithms can unveil hidden patterns within your data
+  - Folder: Lab5
+  - Status: Completed and Published 
+
