@@ -14,19 +14,24 @@ def initialize_centroids_kmeans_pp(data, k):
     centroids = []
     centroids.append(data[np.random.randint(data.shape[0])])
     for _ in range(1, k):
-        distances = np.array([min([np.linalg.norm(x - c) for c in centroids]) for x in data])
-        
-        probabilities = distances / distances.sum()
-        
-        cumulative_probabilities = probabilities.cumsum()
-        
-        rand_value = np.random.rand()
-        
-        for j, p in enumerate(cumulative_probabilities):
-            if rand_value < p:
-                index = j
-                break
-        centroids.append(data[index])
+        distances = []
+        distancesIdx = []
+        idx = 0
+        for j,x in enumerate(data):
+            min_distance = float('inf')
+            for c in centroids:
+                
+                distance = np.linalg.norm(x - c)
+                if distance < min_distance:
+                    min_distance = distance
+                    idx = j
+            distances.append(min_distance)
+            distancesIdx.append(idx)
+        for i,distance in enumerate(distances):
+            if(distance == max(distances)):
+                idx = i
+            np.array(distancesIdx)
+        centroids.append(data[distancesIdx[idx]])
     return np.array(centroids)
 
 
@@ -54,11 +59,11 @@ def k_means(data, num_centroids, kmeansplusplus=False):
         centroids = initialize_centroids_forgy(data, num_centroids)
 
     assignments = assign_to_cluster(data, centroids)
-    for i in range(100):  # max number of iteration = 100
+    for i in range(100):  
         # print(f"Intra distance after {i} iterations: {mean_intra_distance(data, assignments, centroids)}")
         centroids = update_centroids(data, assignments)
         new_assignments = assign_to_cluster(data, centroids)
-        if np.all(new_assignments == assignments):  # stop if nothing changed
+        if np.all(new_assignments == assignments): 
             break
         else:
             assignments = new_assignments
