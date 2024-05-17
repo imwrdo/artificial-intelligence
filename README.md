@@ -24,7 +24,12 @@ providing hands-on experience and practical understanding of AI algorithms and m
   - Folder: Lab4
   - Status: Completed and Published
 5. Clusterisation
-  - Description: This lab delves into the domain of cluster analysis, a fundamental technique in unsupervised learning aimed at grouping similar data points together. Participants explore various clustering algorithms, such as K-means, hierarchical clustering, and DBSCAN, understanding their strengths, weaknesses, and applications. Through hands-on exercises, attendees gain practical experience in clustering real-world datasets, analyzing clusters' characteristics, and interpreting results. Join us to unravel the mysteries of unsupervised learning and discover how clustering algorithms can unveil hidden patterns within your data
+  - Description: This lab delves into the domain of cluster analysis, a fundamental technique in unsupervised learning aimed at grouping similar data points. Participants explore various clustering algorithms, such as K-means, hierarchical clustering, and DBSCAN, understanding their strengths, weaknesses, and applications. Through hands-on exercises, attendees gain practical experience in clustering real-world datasets, analyzing clusters' characteristics, and interpreting results. Join us to unravel the mysteries of unsupervised learning and discover how clustering algorithms can unveil hidden patterns within your data
   - Folder: Lab5
-  - Status: Completed and Published 
+  - Status: Completed and Published
+6. Artificial neural networks
+  - Description: This lab is designed to provide hands-on experience with the fundamental concepts and advanced techniques of ANNs. We are exploring the architecture, training methods, and applications of neural networks, from simple perceptrons to deep learning models. Through a series of practical exercises and projects, we are gaining a solid understanding of how ANNs can be utilized to solve complex problems in various domains such as image recognition, natural language processing, and predictive analytics.
+  - Folder: Lab6
+  - Status: In progress
+
 
